@@ -31,10 +31,13 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v2
+        env: # Or as an environment variable
+          date_tag: $(date +"%Y-%m")
         with:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: famaridon/docker-ci:$(date +"%Y-%m")
+          tags: famaridon/docker-ci:${{ date_tag }}
+          
 
